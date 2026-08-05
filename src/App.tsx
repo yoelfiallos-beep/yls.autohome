@@ -6,8 +6,9 @@ import { AboutPage } from '@/pages/AboutPage';
 import { ServicesPage } from '@/pages/ServicesPage';
 import { ContactPage } from '@/pages/ContactPage';
 import { InstagramFollow } from '@/components/InstagramFollow';
+import { AdminApp } from '@/admin/AdminApp';
 
-function Pages() {
+function PublicPages() {
   const { page } = useRouter();
   switch (page) {
     case 'home':
@@ -24,18 +25,28 @@ function Pages() {
 }
 
 function App() {
+  const { route } = useRouter();
+
+  if (route.kind === 'admin') {
+    return <AdminApp />;
+  }
+
   return (
-    <RouterProvider>
-      <div className="min-h-screen bg-ink-950">
-        <Navbar />
-        <main>
-          <Pages />
-        </main>
-        <InstagramFollow />
-        <Footer />
-      </div>
-    </RouterProvider>
+    <div className="min-h-screen bg-ink-950">
+      <Navbar />
+      <main>
+        <PublicPages />
+      </main>
+      <InstagramFollow />
+      <Footer />
+    </div>
   );
 }
 
-export default App;
+export default function AppWithRouter() {
+  return (
+    <RouterProvider>
+      <App />
+    </RouterProvider>
+  );
+}
