@@ -23,7 +23,7 @@ export function AdminLoginPage() {
     setSubmitting(true);
     const { error: err } = await signIn(email.trim(), password);
     setSubmitting(false);
-    if (err) setFormError('Invalid email or password. Please try again.');
+    if (err) setFormError(err);
   };
 
   if (loading) {
