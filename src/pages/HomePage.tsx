@@ -145,9 +145,20 @@ function Hero() {
   const { navigate } = useRouter();
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden">
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 bg-ink-950">
+        {/* Subtle blurred background fill so letterboxed areas aren't empty */}
         <video
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full scale-110 object-cover opacity-40 blur-2xl"
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src="/videos/interior-result.mp4" type="video/mp4" />
+        </video>
+        {/* Main video — object-contain preserves the full frame with minimal cropping */}
+        <video
+          className="absolute inset-0 h-full w-full object-contain"
           autoPlay
           loop
           muted
