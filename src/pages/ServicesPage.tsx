@@ -114,7 +114,7 @@ export function ServicesPage() {
                 muted
                 playsInline
               >
-                <source src="/videos/hero-video.mp4" type="video/mp4" />
+                <source src="/videos/interior-result.mp4" type="video/mp4" />
               </video>
             </div>
           </div>
