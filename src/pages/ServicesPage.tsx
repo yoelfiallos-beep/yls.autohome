@@ -3,7 +3,6 @@ import { useRouter } from '@/router';
 import { useReveal } from '@/hooks/useReveal';
 import { BUSINESS, SERVICES } from '@/data';
 import { CtaBand, SectionHeading } from '@/components/Shared';
-import { VideoPlaceholder } from '@/components/VideoPlaceholder';
 
 const ICONS = [Car, Leaf, Trash2, Snowflake];
 
@@ -47,24 +46,15 @@ export function ServicesPage() {
                 {/* Media area */}
                 <div className={`relative h-64 overflow-hidden lg:h-auto ${reversed ? 'lg:order-2' : ''}`}>
                   {isAutoDetailing ? (
-                    // ════════════════════════════════════════════════════════
-                    //   AUTO DETAILING — VIDEO PLACEHOLDER
-                    //   Replace this <VideoPlaceholder> with a real <video>:
-                    //
-                    //     <video className="h-full w-full object-cover"
-                    //            autoPlay loop muted playsInline>
-                    //       <source src="/public/videos/detailing-work.mp4" type="video/mp4" />
-                    //     </video>
-                    //
-                    //   Drop your file at:  /public/videos/detailing-work.mp4
-                    // ════════════════════════════════════════════════════════
-                    <VideoPlaceholder
-                      label="Detailing Process Video"
-                      replaceWith="/public/videos/detailing-work.mp4"
-                      className="!aspect-auto h-full w-full rounded-none border-0"
-                      aspect=""
-                      rounded=""
-                    />
+                    <video
+                      className="h-full w-full object-cover"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                    >
+                      <source src="/videos/detailing-work.mp4" type="video/mp4" />
+                    </video>
                   ) : (
                     // Premium service illustration panel (no fake project photos)
                     <ServiceIllustration Icon={Icon} title={s.title} />
@@ -135,24 +125,28 @@ export function ServicesPage() {
             subtitle="Video placeholders — swap in your own clips to show off your process and results."
           />
           <div className="mt-12 grid gap-5 md:grid-cols-2">
-            {/*
-              DETAILING PROCESS VIDEO PLACEHOLDER
-              Replace with a real <video> and drop your file at:
-                /public/videos/detailing-work.mp4
-            */}
-            <VideoPlaceholder
-              label="Detailing Process Video"
-              replaceWith="/public/videos/detailing-work.mp4"
-            />
-            {/*
-              FINISHED DETAIL VIDEO PLACEHOLDER
-              Replace with a real <video> and drop your file at:
-                /public/videos/interior-result.mp4
-            */}
-            <VideoPlaceholder
-              label="Finished Detail Video"
-              replaceWith="/public/videos/interior-result.mp4"
-            />
+            <div className="reveal group relative aspect-video overflow-hidden rounded-2xl border border-silver-400/15 bg-ink-900">
+              <video
+                className="h-full w-full object-cover"
+                autoPlay
+                loop
+                muted
+                playsInline
+              >
+                <source src="/videos/detailing-work.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div className="reveal group relative aspect-video overflow-hidden rounded-2xl border border-silver-400/15 bg-ink-900">
+              <video
+                className="h-full w-full object-cover"
+                autoPlay
+                loop
+                muted
+                playsInline
+              >
+                <source src="/videos/interior-result.mp4" type="video/mp4" />
+              </video>
+            </div>
           </div>
         </div>
       </section>

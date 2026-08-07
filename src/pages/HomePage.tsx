@@ -4,7 +4,6 @@ import { useReveal } from '@/hooks/useReveal';
 import { BUSINESS, SERVICES } from '@/data';
 import { CtaBand, SectionHeading } from '@/components/Shared';
 import { Logo } from '@/components/Logo';
-import { VideoPlaceholder } from '@/components/VideoPlaceholder';
 
 const TRUST_BADGES = [
   { icon: Car, label: 'Mobile Service', sub: 'We come to you' },
@@ -146,27 +145,16 @@ function Hero() {
   const { navigate } = useRouter();
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden">
-      {/* ════════════════════════════════════════════════════════════════
-          HERO VIDEO PLACEHOLDER
-          Replace this entire background block with a real <video>:
-
-            <video
-              className="absolute inset-0 h-full w-full object-cover"
-              autoPlay loop muted playsInline
-            >
-              <source src="/public/videos/hero-video.mp4" type="video/mp4" />
-            </video>
-
-          Then keep the gradient overlays below for text legibility.
-          Drop your file at:  /public/videos/hero-video.mp4
-          ════════════════════════════════════════════════════════════════ */}
       <div className="absolute inset-0">
-        {/* Dark cinematic background with subtle animated gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-ink-900 via-ink-950 to-ink-900" />
-        <div className="absolute inset-0 opacity-70">
-          <div className="absolute -inset-[30%] bg-gradient-to-tr from-brand-600/15 via-transparent to-steel-600/10 animate-[shimmer_8s_ease-in-out_infinite]" />
-        </div>
-        <div className="absolute inset-0 bg-grid opacity-30" />
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src="/videos/hero-video.mp4" type="video/mp4" />
+        </video>
       </div>
 
       {/* Gradient overlays for text readability — keep these when video is added */}
@@ -181,14 +169,7 @@ function Hero() {
         <Play className="h-5 w-5 translate-x-0.5 fill-white" />
       </button>
 
-      {/* "Hero Video Placeholder" label */}
-      <div className="absolute left-1/2 top-20 z-10 -translate-x-1/2">
-        <span className="rounded-lg border border-silver-400/15 bg-ink-950/60 px-3 py-1.5 text-xs font-medium text-silver-400 backdrop-blur">
-          Hero Video Placeholder
-        </span>
-      </div>
-
-      <div className="container-x relative z-10 px-5 pt-28 sm:px-8 lg:px-12">
+<div className="container-x relative z-10 px-5 pt-28 sm:px-8 lg:px-12">
         <div className="max-w-3xl">
           <div className="reveal mb-8">
             <Logo showWordmark size="lg" />
