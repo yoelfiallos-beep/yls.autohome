@@ -1,10 +1,8 @@
-import { ArrowRight, Check, Car, Leaf, Trash2, Snowflake, Phone } from 'lucide-react';
+import { ArrowRight, Check, Phone } from 'lucide-react';
 import { useRouter } from '@/router';
 import { useReveal } from '@/hooks/useReveal';
 import { BUSINESS, SERVICES } from '@/data';
 import { CtaBand, SectionHeading } from '@/components/Shared';
-
-const ICONS = [Car, Leaf, Trash2, Snowflake];
 
 export function ServicesPage() {
   const ref = useReveal<HTMLDivElement>();
@@ -34,39 +32,15 @@ export function ServicesPage() {
       <section className="section-pad pt-6">
         <div className="container-x space-y-8">
           {SERVICES.map((s, i) => {
-            const Icon = ICONS[i];
-            const reversed = i % 2 === 1;
             const isAutoDetailing = s.id === 'auto-detailing';
             return (
               <article
                 key={s.id}
-                className="reveal group relative grid overflow-hidden rounded-3xl border border-silver-400/15 bg-ink-850/80 backdrop-blur lg:grid-cols-2"
+                className="reveal group relative overflow-hidden rounded-3xl border border-silver-400/15 bg-ink-850/80 backdrop-blur"
                 style={{ transitionDelay: `${i * 60}ms` }}
               >
-                {/* Media area */}
-                <div className={`relative h-64 overflow-hidden lg:h-auto ${reversed ? 'lg:order-2' : ''}`}>
-                  {isAutoDetailing ? (
-                    <video
-                      className="h-full w-full object-cover"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                    >
-                      <source src="/videos/detailing-work.mp4" type="video/mp4" />
-                    </video>
-                  ) : (
-                    // Premium service illustration panel (no fake project photos)
-                    <ServiceIllustration Icon={Icon} title={s.title} />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink-900/80 via-ink-900/20 to-transparent lg:bg-gradient-to-r" />
-                  <span className="absolute left-5 top-5 flex h-12 w-12 items-center justify-center rounded-xl bg-brand-500 text-white shadow-lg shadow-brand-600/40">
-                    <Icon className="h-6 w-6" />
-                  </span>
-                </div>
-
                 {/* Content */}
-                <div className={`p-7 sm:p-10 ${reversed ? 'lg:order-1' : ''}`}>
+                <div className="p-7 sm:p-10">
                   <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">{s.title}</h2>
                   <p className="mt-1.5 text-sm font-medium text-brand-400">{s.tagline}</p>
                   <p className="mt-4 text-base leading-relaxed text-silver-300">{s.description}</p>
@@ -112,17 +86,13 @@ export function ServicesPage() {
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════════════════════
-          SEE THE DIFFERENCE — Video placeholders
-          Two premium video slots awaiting your clips.
-          HOW TO REPLACE: see the comments inside each <VideoPlaceholder>.
-          ════════════════════════════════════════════════════════════════ */}
+      {/* SEE THE DIFFERENCE — Videos */}
       <section className="section-pad pt-0" id="see-the-difference">
         <div className="container-x">
           <SectionHeading
             eyebrow="See the difference"
             title={<>Watch us work</>}
-            subtitle="Video placeholders — swap in your own clips to show off your process and results."
+            subtitle="Watch our process and see the results for yourself."
           />
           <div className="mt-12 grid gap-5 md:grid-cols-2">
             <div className="reveal group relative aspect-video overflow-hidden rounded-2xl border border-silver-400/15 bg-ink-900">
@@ -144,7 +114,7 @@ export function ServicesPage() {
                 muted
                 playsInline
               >
-                <source src="/videos/interior-result.mp4" type="video/mp4" />
+                <source src="/videos/hero-video.mp4" type="video/mp4" />
               </video>
             </div>
           </div>
@@ -185,40 +155,3 @@ export function ServicesPage() {
   );
 }
 
-/**
- * Premium service illustration panel.
- * Uses a large icon over a dark cinematic gradient with grid texture —
- * intentionally designed to look like a feature slot, not missing content.
- * Replace with a real photo or video of your work when available.
- */
-function ServiceIllustration({
-  Icon,
-  title,
-}: {
-  Icon: React.ComponentType<{ className?: string }>;
-  title: string;
-}) {
-  return (
-    <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-gradient-to-br from-ink-800 via-ink-900 to-ink-950">
-      {/* Subtle animated gradient */}
-      <div className="absolute inset-0 opacity-60">
-        <div className="absolute -inset-[40%] bg-gradient-to-tr from-brand-600/15 via-transparent to-steel-600/10 animate-[shimmer_8s_ease-in-out_infinite]" />
-      </div>
-      {/* Grid texture */}
-      <div className="absolute inset-0 bg-grid opacity-30" />
-
-      {/* Large centered icon in a glowing ring */}
-      <div className="relative flex flex-col items-center gap-4">
-        <div className="relative flex items-center justify-center">
-          <span className="absolute inline-flex h-32 w-32 rounded-full bg-brand-500/10 blur-2xl" />
-          <span className="relative flex h-24 w-24 items-center justify-center rounded-2xl border border-silver-400/15 bg-silver-300/5 text-silver-300">
-            <Icon className="h-12 w-12" />
-          </span>
-        </div>
-        <span className="rounded-lg border border-silver-400/15 bg-ink-950/60 px-3 py-1 text-xs font-medium text-silver-400 backdrop-blur">
-          {title} illustration
-        </span>
-      </div>
-    </div>
-  );
-}
